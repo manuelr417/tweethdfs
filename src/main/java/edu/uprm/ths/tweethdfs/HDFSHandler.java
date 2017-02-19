@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.URI;
 import java.time.LocalDate;
 
@@ -83,7 +84,9 @@ public class HDFSHandler {
 //        IOUtils.copyBytes(dataIn, this.outputStream, buf.length, false);
 //        this.outputStream.flush();
 //        //this.outputStream.write(buf, 0, buf.length);
-        this.outputStream.writeUTF(str);
+        //this.outputStream.writeUTF(str);
+        PrintStream p = new PrintStream(this.outputStream);
+        p.print(str);
         return this;
     }
 
