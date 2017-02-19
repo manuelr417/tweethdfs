@@ -4,8 +4,12 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.fs.local.LocalConfigKeys;
 import org.apache.hadoop.io.IOUtils;
+import org.apache.hadoop.service.LoggingStateChangeListener;
 import org.apache.hadoop.util.Progressable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -66,6 +70,11 @@ public class HDFSHandler {
         if (str == null){
             throw new IllegalArgumentException("Parameter cannot be null.");
         }
+        Logger logger = LogManager.getRootLogger();
+        LocalDate now = LocalDate.now();
+        logger.trace("LocalDate.now: " + now);
+        logger.trace("Last Dat=e: " + this.lastDate);
+        logger.trace("isEqualDate: " + this.isEqualDate(now));
         if (!this.isEqualDate(LocalDate.now())){
             this.setUpHDFSFile();
         }
@@ -91,7 +100,7 @@ public class HDFSHandler {
             public void progress() {
                 //System.out.print(".");
             }});
-        
+
 
         //FileSystem hdfs = FileSystem.get(conf);
         //this.outputStream = hdfs.append(new Path(filePathName));
