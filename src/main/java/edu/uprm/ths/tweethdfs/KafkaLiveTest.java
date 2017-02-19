@@ -36,5 +36,6 @@ public class KafkaLiveTest {
                 System.out.printf("offset = %d, key = %s, value = %s", record.offset(), record.key(), record.value());
             }
         }
+        consumer.close();
     }
 }
