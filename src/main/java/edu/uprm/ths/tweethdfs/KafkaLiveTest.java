@@ -17,7 +17,7 @@ public class KafkaLiveTest {
     public static void main(String[] args) {
         Properties props = new Properties();
         props.put("bootstrap.servers", "node05.ece.uprm.edu:9092");
-        props.put("group.id", "tweets");
+        props.put("group.id", "tweets2");
         props.put("enable.auto.commit", "true");
         props.put("auto.commit.interval.ms", "1000");
         props.put("session.timeout.ms", "30000");
