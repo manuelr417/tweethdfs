@@ -86,11 +86,14 @@ public class HDFSHandler {
         String filePathName = filePrefix + "2-" + newDate.toString();
         System.out.println("CABRON FILE: " + filePathName);
         URI fileUri = URI.create(filePathName);
-        //FileSystem hdfs = FileSystem.get(fileUri, conf);
-        //this.outputStream =  hdfs.create(new Path(filePathName), new Progressable() {
-          //  public void progress() {
+        FileSystem hdfs = FileSystem.get(fileUri, conf);
+        this.outputStream =  hdfs.create(new Path(filePathName), new Progressable() {
+            public void progress() {
                 //System.out.print(".");
-        FileSystem hdfs = FileSystem.get(conf);
-        this.outputStream = hdfs.append(new Path(filePathName));
+            }});
+        
+
+        //FileSystem hdfs = FileSystem.get(conf);
+        //this.outputStream = hdfs.append(new Path(filePathName));
     }
 }
