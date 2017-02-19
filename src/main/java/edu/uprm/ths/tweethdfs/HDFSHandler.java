@@ -83,13 +83,13 @@ public class HDFSHandler {
             throw new IllegalStateException("HDFSHandler cannot be closed when running this operation.");
         }
         LocalDate newDate = LocalDate.now();
-        String filePathName = filePrefix + "-" + newDate.toString();
+        String filePathName = filePrefix + "2-" + newDate.toString();
         URI fileUri = URI.create(filePathName);
-        FileSystem hdfs = FileSystem.get(fileUri, conf);
-        this.outputStream =  hdfs.create(new Path(filePathName), new Progressable() {
-            public void progress() {
+        //FileSystem hdfs = FileSystem.get(fileUri, conf);
+        //this.outputStream =  hdfs.create(new Path(filePathName), new Progressable() {
+          //  public void progress() {
                 //System.out.print(".");
-            }
-        });
+        FileSystem hdfs = FileSystem.get(conf);
+        this.outputStream = hdfs.append(new Path(filePathName));
     }
 }
