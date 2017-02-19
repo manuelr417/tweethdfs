@@ -78,12 +78,12 @@ public class HDFSHandler {
         if (!this.isEqualDate(LocalDate.now())){
             this.setUpHDFSFile();
         }
-        byte[] buf = str.getBytes();
-        ByteArrayInputStream dataIn = new ByteArrayInputStream(buf);
-        IOUtils.copyBytes(dataIn, this.outputStream, buf.length, false);
-        this.outputStream.flush();
-        //this.outputStream.write(buf, 0, buf.length);
-        //this.outputStream.writeUTF(str);
+//        byte[] buf = str.getBytes();
+//        ByteArrayInputStream dataIn = new ByteArrayInputStream(buf);
+//        IOUtils.copyBytes(dataIn, this.outputStream, buf.length, false);
+//        this.outputStream.flush();
+//        //this.outputStream.write(buf, 0, buf.length);
+        this.outputStream.writeUTF(str);
         return this;
     }
 
