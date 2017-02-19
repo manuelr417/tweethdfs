@@ -67,7 +67,9 @@ public class HDFSHandler {
         if (!this.isEqualDate(LocalDate.now())){
             this.setUpHDFSFile();
         }
-        this.outputStream.writeUTF(str);
+        byte[] buf = str.getBytes();
+        this.outputStream.write(buf, 0, buf.length);
+        //this.outputStream.writeUTF(str);
         return this;
     }
 
