@@ -3,6 +3,8 @@ package edu.uprm.ths.tweethdfs;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.Properties;
@@ -23,10 +25,15 @@ public class KafkaLiveTest {
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         KafkaConsumer<String,String> consumer = new KafkaConsumer<String, String>(props);
         consumer.subscribe(Arrays.asList("trump"));
+        Logger logger = LogManager.getLogger();
+        logger.trace("Starting to get tweets");
         for (int i=0; i < 20; ++i) {
+            logger.trace("Iteration: " + 1);
             ConsumerRecords<String, String> records = consumer.poll(100);
-            for (ConsumerRecord<String, String> record : records)
+            for (ConsumerRecord<String, String> record : records) {
+                logger.trace("records: " + records.count());
                 System.out.printf("offset = %d, key = %s, value = %s", record.offset(), record.key(), record.value());
+            }
         }
     }
 }
