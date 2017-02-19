@@ -86,8 +86,7 @@ public class HDFSHandler {
 //        this.outputStream.flush();
 //        //this.outputStream.write(buf, 0, buf.length);
         //this.outputStream.writeUTF(str);
-        PrintStream p = new PrintStream(this.outputStream);
-        p.print(str);
+        this.printStream.println(str);
         return this;
     }
 
