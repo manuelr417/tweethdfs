@@ -28,7 +28,7 @@ public class KafkaLiveTest {
         Logger logger = LogManager.getLogger();
         logger.trace("Starting to get tweets");
         for (int i=0; i < 20; ++i) {
-            logger.trace("Iteration: " + 1);
+            logger.trace("Iteration: " + i);
             ConsumerRecords<String, String> records = consumer.poll(100);
             for (ConsumerRecord<String, String> record : records) {
                 logger.trace("records: " + records.count());
