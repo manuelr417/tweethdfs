@@ -101,7 +101,7 @@ public class HDFSHandler {
                 //System.out.print(".");
             }});
 
-
+        this.lastDate = newDate;
         //FileSystem hdfs = FileSystem.get(conf);
         //this.outputStream = hdfs.append(new Path(filePathName));
     }
