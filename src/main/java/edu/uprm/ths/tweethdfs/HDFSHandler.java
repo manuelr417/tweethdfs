@@ -84,6 +84,7 @@ public class HDFSHandler {
         }
         LocalDate newDate = LocalDate.now();
         String filePathName = filePrefix + "2-" + newDate.toString();
+        System.out.println("CABRON FILE: " + filePathName);
         URI fileUri = URI.create(filePathName);
         //FileSystem hdfs = FileSystem.get(fileUri, conf);
         //this.outputStream =  hdfs.create(new Path(filePathName), new Progressable() {
