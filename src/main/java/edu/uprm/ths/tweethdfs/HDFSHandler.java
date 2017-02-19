@@ -63,6 +63,7 @@ public class HDFSHandler {
     }
 
     public HDFSHandler close() throws IOException{
+        this.printStream.close();
         this.outputStream.close();
         this.currentState = HDFSHandlerState.CLOSED;
         return this;
@@ -72,11 +73,11 @@ public class HDFSHandler {
         if (str == null){
             throw new IllegalArgumentException("Parameter cannot be null.");
         }
-        Logger logger = LogManager.getRootLogger();
-        LocalDate now = LocalDate.now();
-        logger.trace("LocalDate.now: " + now);
-        logger.trace("Last Dat=e: " + this.lastDate);
-        logger.trace("isEqualDate: " + this.isEqualDate(now));
+//        Logger logger = LogManager.getRootLogger();
+//        LocalDate now = LocalDate.now();
+//        logger.trace("LocalDate.now: " + now);
+//        logger.trace("Last Dat=e: " + this.lastDate);
+//        logger.trace("isEqualDate: " + this.isEqualDate(now));
         if (!this.isEqualDate(LocalDate.now())){
             this.setUpHDFSFile();
         }
@@ -93,6 +94,9 @@ public class HDFSHandler {
     private void setUpHDFSFile() throws IOException{
         if (this.currentState == HDFSHandlerState.CLOSED){
             throw new IllegalStateException("HDFSHandler cannot be closed when running this operation.");
+        }
+        if (this.currentState == HDFSHandlerState.OPEN){
+            this.close();
         }
         LocalDate newDate = LocalDate.now();
         String filePathName = filePrefix + "2-" + newDate.toString();
