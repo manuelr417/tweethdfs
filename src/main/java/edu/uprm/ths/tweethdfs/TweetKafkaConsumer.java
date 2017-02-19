@@ -3,6 +3,7 @@ package edu.uprm.ths.tweethdfs;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.common.TopicPartition;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -32,7 +33,15 @@ public class TweetKafkaConsumer<S, S1> {
         props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         KafkaConsumer<String,String> consumer = new KafkaConsumer<String, String>(props);
-        consumer.subscribe(Arrays.asList("trump"));
+
+        //consumer.subscribe(Arrays.asList("trump"));
+
+        String topic = "trump";
+        TopicPartition partition0 = new TopicPartition(topic, 0);
+        TopicPartition partition1 = new TopicPartition(topic, 1);
+        TopicPartition partition2 = new TopicPartition(topic, 2);
+
+        consumer.assign(Arrays.asList(partition0, partition1, partition2));
         HDFSHandler handler = null;
         try {
             logger.trace("Creating handler");
