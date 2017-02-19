@@ -60,7 +60,7 @@
             <configuration>
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>edu.uprm.ths.tweethdfs.KafkaLiveTest</mainClass>
+                  <mainClass>edu.uprm.ths.tweethdfs.TweetKafkaConsumer</mainClass>
                 </transformer>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer">
                 </transformer>
