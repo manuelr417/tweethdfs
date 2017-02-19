@@ -4,8 +4,10 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataOutputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IOUtils;
 import org.apache.hadoop.util.Progressable;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URI;
 import java.time.LocalDate;
@@ -68,7 +70,9 @@ public class HDFSHandler {
             this.setUpHDFSFile();
         }
         byte[] buf = str.getBytes();
-        this.outputStream.write(buf, 0, buf.length);
+        ByteArrayInputStream dataIn = new ByteArrayInputStream(buf);
+        IOUtils.copyBytes(dataIn, this.outputStream, buf.length, false);
+        //this.outputStream.write(buf, 0, buf.length);
         //this.outputStream.writeUTF(str);
         return this;
     }
