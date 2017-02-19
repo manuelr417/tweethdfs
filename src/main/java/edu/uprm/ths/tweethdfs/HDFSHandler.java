@@ -34,6 +34,7 @@ public class HDFSHandler {
     private HDFSHandlerState currentState;
     private Configuration conf;
     private FSDataOutputStream outputStream;
+    private PrintStream printStream;
 
     private HDFSHandler(String hdfsURI, String filePrefix){
         this.hdfsURI = hdfsURI;
@@ -103,7 +104,7 @@ public class HDFSHandler {
             public void progress() {
                 //System.out.print(".");
             }});
-
+        this.printStream = new PrintStream(this.outputStream);
         this.lastDate = newDate;
         //FileSystem hdfs = FileSystem.get(conf);
         //this.outputStream = hdfs.append(new Path(filePathName));
