@@ -26,13 +26,13 @@ public class KafkaLiveTest {
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         KafkaConsumer<String,String> consumer = new KafkaConsumer<String, String>(props);
         consumer.subscribe(Arrays.asList("trump"));
-        Logger logger = LogManager.getLogger();
-        logger.trace("Starting to get tweets");
+        //Logger logger = LogManager.getLogger();
+        //logger.trace("Starting to get tweets");
         for (int i=0; i < 20; ++i) {
-            logger.trace("Iteration: " + i);
+            //logger.trace("Iteration: " + i);
             ConsumerRecords<String, String> records = consumer.poll(100);
             for (ConsumerRecord<String, String> record : records) {
-                logger.trace("records: " + records.count());
+                //logger.trace("records: " + records.count());
                 System.out.printf("offset = %d, key = %s, value = %s", record.offset(), record.key(), record.value());
             }
         }
