@@ -22,7 +22,7 @@ public class HDFSHandlerLiveTest {
             if ((i % 10) == 0){
                 logger.trace(".");
             }
-            handler.writeUTF("This is string number : " + i);
+            handler.writeUTF("This is string number : " + i + "\n\r");
         }
         logger.trace("Closing the handler");
         handler.close();

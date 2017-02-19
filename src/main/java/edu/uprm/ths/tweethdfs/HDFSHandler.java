@@ -83,8 +83,7 @@ public class HDFSHandler {
 //        IOUtils.copyBytes(dataIn, this.outputStream, buf.length, false);
 //        this.outputStream.flush();
 //        //this.outputStream.write(buf, 0, buf.length);
-        this.outputStream.writeUTF(str+"\n\r");
-        this.outputStream.flush();
+        this.outputStream.writeUTF(str);
         return this;
     }
 
