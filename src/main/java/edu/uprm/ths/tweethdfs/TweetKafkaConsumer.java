@@ -25,7 +25,9 @@ public class TweetKafkaConsumer<S, S1> {
         Properties props = new Properties();
         props.put("bootstrap.servers", "node05.ece.uprm.edu:9092");
         //props.put("group.id", "tweets2");
-        props.put("group.id", "tweet-" + UUID.randomUUID().toString());
+        String groupId= UUID.randomUUID().toString();
+        logger.trace("Group id: " + groupId);
+        props.put("group.id", "tweet-" + groupId);
         props.put("enable.auto.commit", "true");
         props.put("auto.commit.interval.ms", "1000");
         props.put("session.timeout.ms", "30000");
@@ -63,9 +65,10 @@ public class TweetKafkaConsumer<S, S1> {
         }
         catch(Exception e1){
             e1.printStackTrace();
+            logger.trace("Exception: " + e1.toString());
         }
         finally {
-            logger.trace("Closing the handler");
+            logger.trace("Something bad happened. Closing the handler");
             if (handler != null) {
                 try {
                     handler.close();
